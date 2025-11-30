@@ -1,0 +1,161 @@
+.footer {
+  background: linear-gradient(135deg, #2C1810 0%, #8B4513 100%);
+  color: white;
+  padding: 60px 0 20px;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.footer-section h3 {
+  color: #F4A460;
+  margin-bottom: 20px;
+  font-size: 1.3rem;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #F4A460;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.footer-section p {
+  color: #D2B48C;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(244, 164, 96, 0.2);
+  color: #F4A460;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  background: #F4A460;
+  color: #2C1810;
+  transform: translateY(-2px);
+}
+
+.footer-section ul {
+  list-style: none;
+}
+
+.footer-section ul li {
+  margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+  color: #D2B48C;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+  color: #F4A460;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #D2B48C;
+  margin-bottom: 12px;
+}
+
+.contact-item svg {
+  color: #F4A460;
+}
+
+.newsletter {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.newsletter-input {
+  padding: 12px;
+  border: 1px solid rgba(244, 164, 96, 0.3);
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 1rem;
+}
+
+.newsletter-input::placeholder {
+  color: #D2B48C;
+}
+
+.newsletter-input:focus {
+  outline: none;
+  border-color: #F4A460;
+}
+
+.newsletter-btn {
+  align-self: flex-start;
+}
+
+/* Business Hours Styling */
+.hours-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.hour-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  padding: 4px 0;
+}
+
+.hour-item span:first-child {
+  font-weight: 500;
+  color: #D2B48C;
+}
+
+.hour-item span:last-child {
+  color: #F4A460;
+  font-weight: 600;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(244, 164, 96, 0.3);
+  padding-top: 20px;
+  text-align: center;
+  color: #D2B48C;
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .newsletter {
+    flex-direction: column;
+  }
+}

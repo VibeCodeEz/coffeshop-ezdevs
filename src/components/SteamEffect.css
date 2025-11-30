@@ -1,0 +1,105 @@
+.steam-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.steam-effect {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.steam-container:hover .steam-effect {
+  opacity: 1;
+}
+
+.steam-particle {
+  position: absolute;
+  bottom: 10%;
+  width: 4px;
+  height: 20px;
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  border-radius: 50%;
+  animation: steam-rise 2s ease-in-out infinite;
+}
+
+.steam-1 {
+  left: 35%;
+  animation-delay: 0s;
+  animation-duration: 2.5s;
+}
+
+.steam-2 {
+  left: 45%;
+  animation-delay: 0.3s;
+  animation-duration: 2.2s;
+}
+
+.steam-3 {
+  left: 55%;
+  animation-delay: 0.6s;
+  animation-duration: 2.8s;
+}
+
+.steam-4 {
+  left: 40%;
+  animation-delay: 0.9s;
+  animation-duration: 2.1s;
+}
+
+.steam-5 {
+  left: 60%;
+  animation-delay: 1.2s;
+  animation-duration: 2.6s;
+}
+
+@keyframes steam-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(1) rotate(0deg);
+  }
+  10% {
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(-30px) scale(1.2) rotate(5deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-80px) scale(0.5) rotate(-10deg);
+  }
+}
+
+/* Specific styles for different containers */
+.steam-container.product-steam .steam-effect {
+  height: 50%;
+  top: 10%;
+}
+
+.steam-container.button-steam .steam-effect {
+  height: 30%;
+  top: 5%;
+}
+
+.steam-container.hero-steam .steam-effect {
+  height: 80%;
+  top: -20%;
+}
+
+/* Disable steam effect on mobile for performance */
+@media (max-width: 768px) {
+  .steam-effect {
+    display: none;
+  }
+}

@@ -1,0 +1,250 @@
+.coffee-feature-demo {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: 'Inter', sans-serif;
+}
+
+.demo-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.demo-header h1 {
+  font-size: 3rem;
+  color: #2d1810;
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+
+.demo-header p {
+  font-size: 1.2rem;
+  color: #5d4037;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.demo-navigation {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+}
+
+.demo-nav-btn {
+  background: #f8f5f1;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  color: #5d4037;
+}
+
+.demo-nav-btn:hover {
+  background: #f0e8d8;
+  transform: translateY(-2px);
+}
+
+.demo-nav-btn.active {
+  background: #8b4513;
+  color: white;
+  border-color: #6b3410;
+  box-shadow: 0 4px 20px rgba(139, 69, 19, 0.3);
+}
+
+.demo-icon {
+  font-size: 1.2rem;
+}
+
+.demo-content {
+  min-height: 600px;
+}
+
+.demo-section {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.demo-description {
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid #f0e8d8;
+  position: sticky;
+  top: 20px;
+}
+
+.demo-description h2 {
+  color: #2d1810;
+  font-size: 2rem;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.demo-description p {
+  color: #5d4037;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.demo-description ul {
+  list-style: none;
+  padding: 0;
+}
+
+.demo-description li {
+  color: #2d1810;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.demo-showcase {
+  background: #f8f5f1;
+  border-radius: 20px;
+  padding: 32px;
+  border: 1px solid #e8dcc6;
+}
+
+.brew-guide-samples h3 {
+  color: #2d1810;
+  margin-bottom: 24px;
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+.sample-tooltips {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.sample-product {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.sample-product h4 {
+  color: #2d1810;
+  margin-bottom: 12px;
+  font-size: 1.1rem;
+}
+
+.demo-video {
+  height: 300px;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+}
+
+.video-demo-content {
+  text-align: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.video-demo-content h3 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.video-demo-content p {
+  font-size: 1.1rem;
+  margin: 0;
+  opacity: 0.9;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.demo-footer {
+  margin-top: 64px;
+  text-align: center;
+}
+
+.implementation-note {
+  background: linear-gradient(135deg, #8b4513 0%, #6b3410 100%);
+  color: white;
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.implementation-note h3 {
+  font-size: 1.8rem;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.implementation-note p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  opacity: 0.95;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .coffee-feature-demo {
+    padding: 20px 16px;
+  }
+
+  .demo-header h1 {
+    font-size: 2rem;
+  }
+
+  .demo-navigation {
+    gap: 8px;
+  }
+
+  .demo-nav-btn {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
+
+  .demo-section {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .demo-description {
+    position: static;
+  }
+
+  .demo-showcase {
+    padding: 20px;
+  }
+
+  .sample-tooltips {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+/* Additional styles for better integration */
+.product-actions {
+  margin: 12px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.menu-item-actions {
+  margin: 12px 0;
+  display: flex;
+  justify-content: center;
+}

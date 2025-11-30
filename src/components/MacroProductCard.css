@@ -1,0 +1,270 @@
+.macro-product-card {
+  background: white;
+  border-radius: 20px;
+  padding: 0;
+  box-shadow: 
+    0 8px 32px rgba(139, 69, 19, 0.15),
+    0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+}
+
+.macro-product-card:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 
+    0 20px 60px rgba(139, 69, 19, 0.25),
+    0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.macro-image-container {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 20px 20px 0 0;
+}
+
+.macro-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    var(--coffee-brown) 0%,
+    var(--warm-brown) 30%,
+    var(--light-brown) 60%,
+    var(--copper) 100%
+  );
+}
+
+.coffee-texture {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(101, 67, 33, 0.8) 2px, transparent 2px),
+    radial-gradient(circle at 60% 80%, rgba(139, 69, 19, 0.6) 1.5px, transparent 1.5px),
+    radial-gradient(circle at 80% 40%, rgba(160, 82, 45, 0.7) 1px, transparent 1px),
+    radial-gradient(circle at 30% 70%, rgba(210, 105, 30, 0.5) 2.5px, transparent 2.5px);
+  background-size: 40px 40px, 60px 60px, 30px 30px, 80px 80px;
+  opacity: 0.8;
+  animation: texture-movement 20s linear infinite;
+}
+
+.coffee-beans-scatter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(ellipse 4px 6px at 25% 30%, #654321 40%, transparent 40%),
+    radial-gradient(ellipse 3px 5px at 70% 20%, #8B4513 40%, transparent 40%),
+    radial-gradient(ellipse 4px 6px at 80% 70%, #A0522D 40%, transparent 40%),
+    radial-gradient(ellipse 3px 5px at 15% 80%, #654321 40%, transparent 40%),
+    radial-gradient(ellipse 4px 6px at 90% 40%, #8B4513 40%, transparent 40%);
+  background-size: 120px 120px, 80px 80px, 100px 100px, 140px 140px, 90px 90px;
+  opacity: 0.6;
+}
+
+.product-image-main {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  transition: transform 0.3s ease;
+}
+
+.macro-product-card:hover .product-image-main {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.product-emoji {
+  font-size: 5rem;
+  display: block;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.macro-details {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+}
+
+.texture-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.2) 50%,
+    transparent 100%
+  );
+}
+
+.grain-pattern {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 1px,
+      rgba(255, 255, 255, 0.1) 1px,
+      rgba(255, 255, 255, 0.1) 2px
+    );
+  opacity: 0.5;
+}
+
+.product-info-enhanced {
+  padding: 24px;
+  background: white;
+}
+
+.product-name {
+  color: var(--coffee-brown);
+  margin-bottom: 8px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  font-family: 'Dancing Script', cursive;
+  letter-spacing: 0.5px;
+}
+
+.product-description {
+  color: var(--espresso-medium);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 16px;
+  min-height: 3em;
+  font-family: 'Inter', sans-serif;
+}
+
+.product-rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.stars {
+  display: flex;
+  gap: 2px;
+}
+
+.star-filled {
+  color: #FFD700;
+  fill: currentColor;
+}
+
+.star-empty {
+  color: #ddd;
+}
+
+.rating-text {
+  color: var(--coffee-brown);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.product-footer-enhanced {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.product-price {
+  color: var(--espresso-dark);
+  font-size: 1.4rem;
+  font-weight: 700;
+  font-family: 'Playfair Display', serif;
+}
+
+.add-btn-enhanced {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--warm-gold) 0%, var(--rich-copper) 100%);
+  color: var(--espresso-dark);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 
+    0 4px 15px rgba(218, 165, 32, 0.4),
+    0 2px 8px rgba(205, 127, 50, 0.3);
+  font-weight: 700;
+}
+
+.add-btn-enhanced:hover {
+  background: linear-gradient(135deg, var(--rich-copper) 0%, var(--warm-gold) 100%);
+  color: white;
+  transform: scale(1.15) rotate(15deg);
+  box-shadow: 
+    0 8px 25px rgba(218, 165, 32, 0.5),
+    0 4px 15px rgba(205, 127, 50, 0.4);
+}
+
+.popular-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: linear-gradient(45deg, #FFD700, #FFA500);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  z-index: 20;
+  box-shadow: 0 3px 10px rgba(255, 215, 0, 0.4);
+}
+
+@keyframes texture-movement {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(-10px, -5px) rotate(1deg);
+  }
+  50% {
+    transform: translate(-5px, -10px) rotate(-1deg);
+  }
+  75% {
+    transform: translate(10px, -5px) rotate(1deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .macro-image-container {
+    height: 160px;
+  }
+  
+  .product-emoji {
+    font-size: 4rem;
+  }
+  
+  .product-info-enhanced {
+    padding: 20px;
+  }
+}

@@ -1,0 +1,224 @@
+.home-page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.home-page > * {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+}
+
+.coffee-process-section {
+  background: linear-gradient(135deg, #2d1810 0%, #8b4513 50%, #2d1810 100%);
+  padding: 80px 0;
+  margin: 60px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.coffee-process-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+  animation: float 20s linear infinite;
+}
+
+.coffee-process-content {
+  text-align: center;
+  color: white;
+  position: relative;
+  z-index: 2;
+}
+
+.coffee-process-content h2 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.coffee-process-content p {
+  font-size: 1.3rem;
+  opacity: 0.9;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  margin-bottom: 48px;
+}
+
+.brewing-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 32px;
+  margin-top: 48px;
+}
+
+.step {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 32px 24px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.step:hover {
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.step-icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.step h4 {
+  color: #FFD700;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.step p {
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  margin: 0;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+@media (max-width: 768px) {
+  .coffee-process-content h2 {
+    font-size: 2rem;
+  }
+  
+  .coffee-process-content p {
+    font-size: 1.1rem;
+  }
+
+  .brewing-steps {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .step {
+    padding: 24px 20px;
+  }
+
+  .coffee-process-section {
+    padding: 60px 0;
+    margin: 40px 0;
+  }
+}
+
+/* Order Now CTA Section */
+.order-now-cta {
+  background: linear-gradient(135deg, #8b4513 0%, #d2691e 100%);
+  padding: 80px 0;
+  text-align: center;
+  color: white;
+}
+
+.cta-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.cta-text h2 {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+
+.cta-text p {
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+.cta-actions {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.order-now-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+}
+
+.order-now-btn:hover {
+  background: linear-gradient(135deg, #e55a2b 0%, #df7f1a 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 107, 53, 0.6);
+  text-decoration: none;
+  color: white;
+}
+
+.browse-menu-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 32px;
+  background: transparent;
+  color: white;
+  text-decoration: none;
+  border: 2px solid white;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.browse-menu-btn:hover {
+  background: white;
+  color: #8b4513;
+  transform: translateY(-3px);
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .order-now-cta {
+    padding: 60px 0;
+  }
+  
+  .cta-text h2 {
+    font-size: 2rem;
+  }
+  
+  .cta-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .order-now-btn,
+  .browse-menu-btn {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
+}

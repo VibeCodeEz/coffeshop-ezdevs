@@ -1,0 +1,307 @@
+/* ========================================
+   MOBILE OPTIMIZATIONS & TOUCH ENHANCEMENTS
+   ======================================== */
+
+/* Touch-friendly interactions */
+@media (pointer: coarse) {
+  /* Increase touch targets for better accessibility */
+  button,
+  a,
+  input,
+  textarea,
+  select,
+  .clickable,
+  .btn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Add visual feedback for touch */
+  button:active,
+  .btn:active,
+  a:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+}
+
+/* Prevent horizontal scrolling on mobile */
+body {
+  overflow-x: hidden;
+}
+
+/* Optimize form inputs for mobile */
+@media (max-width: 768px) {
+  input,
+  textarea,
+  select {
+    font-size: 16px; /* Prevent zoom on iOS */
+    padding: 12px 16px;
+    border-radius: 8px;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  
+  /* Style select dropdowns */
+  select {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    padding-right: 40px;
+  }
+}
+
+/* Improve text readability on mobile */
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+  }
+  
+  p {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+  }
+}
+
+/* Optimize images for mobile */
+@media (max-width: 768px) {
+  img {
+    height: auto;
+    max-width: 100%;
+    object-fit: cover;
+  }
+  
+  .hero-image,
+  .product-image,
+  .featured-image {
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+}
+
+/* Mobile-specific animations and transitions */
+@media (max-width: 768px) {
+  /* Reduce motion intensity for mobile performance */
+  * {
+    animation-duration: 0.3s !important;
+    transition-duration: 0.2s !important;
+  }
+  
+  /* Smooth scroll for better UX */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Improve focus states for accessibility */
+  button:focus,
+  a:focus,
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: 2px solid var(--coffee-brown);
+    outline-offset: 2px;
+  }
+}
+
+/* Sticky elements optimization for mobile */
+@media (max-width: 768px) {
+  .sticky-cart-trigger {
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+  
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+  }
+}
+
+/* Modal and overlay optimizations */
+@media (max-width: 768px) {
+  .modal,
+  .overlay,
+  .popup {
+    padding: 16px;
+  }
+  
+  .modal-content {
+    max-width: 95vw;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 16px;
+  }
+  
+  .close-btn {
+    min-width: 44px;
+    min-height: 44px;
+    top: 12px;
+    right: 12px;
+  }
+}
+
+/* Table responsiveness */
+@media (max-width: 768px) {
+  .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 8px;
+  }
+  
+  table {
+    min-width: 600px;
+    font-size: 0.9rem;
+  }
+  
+  th, td {
+    padding: 8px 12px;
+    white-space: nowrap;
+  }
+}
+
+/* Card layout improvements */
+@media (max-width: 768px) {
+  .card,
+  .product-card,
+  .menu-item {
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-image {
+    border-radius: 8px;
+    aspect-ratio: 16/10;
+    object-fit: cover;
+  }
+}
+
+/* Loading and skeleton improvements */
+@media (max-width: 768px) {
+  .loading-spinner {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .skeleton {
+    border-radius: 8px;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+  }
+  
+  @keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+}
+
+/* Performance optimizations */
+@media (max-width: 768px) {
+  /* Use transform instead of changing layout properties */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Optimize will-change for animations */
+  .animated-element {
+    will-change: transform, opacity;
+  }
+  
+  .animated-element.complete {
+    will-change: auto;
+  }
+}
+
+/* Dark mode considerations for mobile */
+@media (max-width: 768px) and (prefers-color-scheme: dark) {
+  .card,
+  .modal,
+  .popup {
+    background: #2a2a2a;
+    color: #ffffff;
+    border: 1px solid #404040;
+  }
+  
+  input,
+  textarea,
+  select {
+    background: #333333;
+    color: #ffffff;
+    border: 1px solid #555555;
+  }
+  
+  input::placeholder,
+  textarea::placeholder {
+    color: #aaaaaa;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  button,
+  .btn {
+    border: 2px solid;
+  }
+  
+  .card,
+  .modal {
+    border: 2px solid;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .parallax,
+  .floating-animation,
+  .complex-animation {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+/* Safe area insets for notched devices */
+@supports (padding: max(0px)) {
+  .header,
+  .footer,
+  .sticky-element {
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
+  }
+  
+  .header {
+    padding-top: max(12px, env(safe-area-inset-top));
+  }
+  
+  .footer {
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+  }
+}

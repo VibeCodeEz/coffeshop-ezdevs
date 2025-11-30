@@ -1,0 +1,124 @@
+.parallax-section {
+  position: relative;
+  overflow: hidden;
+  min-height: 400px;
+  width: 100%;
+  display: block;
+}
+
+.parallax-background {
+  position: absolute;
+  top: -20%;
+  left: 0;
+  width: 100%;
+  height: 120%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  will-change: transform;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.parallax-content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  min-height: inherit;
+}
+
+/* Coffee bean background pattern */
+.parallax-section.coffee-beans::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(ellipse 3px 4px at 20% 30%, rgba(139, 69, 19, 0.6) 40%, transparent 40%),
+    radial-gradient(ellipse 3px 4px at 70% 70%, rgba(160, 82, 45, 0.5) 40%, transparent 40%),
+    radial-gradient(ellipse 3px 4px at 40% 80%, rgba(210, 105, 30, 0.4) 40%, transparent 40%),
+    radial-gradient(ellipse 3px 4px at 80% 20%, rgba(139, 69, 19, 0.6) 40%, transparent 40%),
+    radial-gradient(ellipse 3px 4px at 10% 80%, rgba(160, 82, 45, 0.5) 40%, transparent 40%),
+    radial-gradient(ellipse 3px 4px at 90% 50%, rgba(210, 105, 30, 0.4) 40%, transparent 40%);
+  background-size: 200px 200px;
+  opacity: 0.08;
+  animation: float-beans 20s linear infinite;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Farm landscape background */
+.parallax-section.coffee-farm {
+  background: linear-gradient(
+    135deg,
+    rgba(139, 69, 19, 0.2) 0%,
+    rgba(160, 82, 45, 0.15) 50%,
+    rgba(210, 105, 30, 0.1) 100%
+  );
+}
+
+.parallax-section.coffee-farm::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(to bottom, transparent 60%, rgba(34, 139, 34, 0.3) 80%),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 100px,
+      rgba(34, 139, 34, 0.1) 100px,
+      rgba(34, 139, 34, 0.1) 150px
+    );
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Macro texture background */
+.parallax-section.coffee-texture {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(139, 69, 19, 0.3) 0%,
+    rgba(101, 67, 33, 0.2) 100%
+  );
+}
+
+.parallax-section.coffee-texture::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 25% 25%, rgba(160, 82, 45, 0.3) 2px, transparent 2px),
+    radial-gradient(circle at 75% 75%, rgba(210, 105, 30, 0.2) 1px, transparent 1px),
+    radial-gradient(circle at 50% 50%, rgba(139, 69, 19, 0.15) 1.5px, transparent 1.5px);
+  background-size: 50px 50px, 30px 30px, 70px 70px;
+  animation: texture-shift 30s ease-in-out infinite;
+  z-index: 2;
+  pointer-events: none;
+}
+
+@keyframes float-beans {
+  0% {
+    transform: translateX(0) rotate(0deg);
+  }
+  100% {
+    transform: translateX(-200px) rotate(360deg);
+  }
+}
+
+@keyframes texture-shift {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.1) rotate(2deg);
+  }
+}

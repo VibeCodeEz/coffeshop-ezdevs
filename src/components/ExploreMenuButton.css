@@ -1,0 +1,77 @@
+/* Additional enhanced styles for the Explore Menu button */
+.btn-hero-primary {
+  /* Enhanced visibility with stronger contrast */
+  background: linear-gradient(135deg, #8B4513 0%, #A0522D 25%, #CD853F 50%, #D2691E 75%, #8B4513 100%) !important;
+  background-size: 400% 400% !important;
+  border: 4px solid #FFFFFF !important;
+  color: #FFFFFF !important;
+  
+  /* Strong shadow for depth */
+  box-shadow: 
+    0 0 0 2px #8B4513,
+    0 8px 16px rgba(0, 0, 0, 0.3),
+    0 16px 32px rgba(139, 69, 19, 0.4),
+    inset 0 2px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.2) !important;
+  
+  /* Typography for better visibility */
+  font-weight: 900 !important;
+  font-size: 1.2rem !important;
+  text-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.5),
+    0 0 8px rgba(139, 69, 19, 0.8),
+    0 1px 0 rgba(255, 255, 255, 0.2) !important;
+  letter-spacing: 1px !important;
+  
+  /* Animation */
+  animation: coffeeGlow 2s ease-in-out infinite alternate !important;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
+}
+
+@keyframes coffeeGlow {
+  0% {
+    background-position: 0% 50%;
+    box-shadow: 
+      0 0 0 2px #8B4513,
+      0 8px 16px rgba(0, 0, 0, 0.3),
+      0 16px 32px rgba(139, 69, 19, 0.4),
+      0 0 20px rgba(139, 69, 19, 0.6),
+      inset 0 2px 0 rgba(255, 255, 255, 0.3),
+      inset 0 -2px 0 rgba(0, 0, 0, 0.2);
+  }
+  100% {
+    background-position: 100% 50%;
+    box-shadow: 
+      0 0 0 2px #8B4513,
+      0 8px 16px rgba(0, 0, 0, 0.3),
+      0 16px 32px rgba(139, 69, 19, 0.4),
+      0 0 30px rgba(210, 105, 30, 0.8),
+      inset 0 2px 0 rgba(255, 255, 255, 0.3),
+      inset 0 -2px 0 rgba(0, 0, 0, 0.2);
+  }
+}
+
+.btn-hero-primary:hover {
+  transform: translateY(-6px) scale(1.08) !important;
+  background: linear-gradient(135deg, #CD853F 0%, #D2691E 25%, #DAA520 50%, #B8860B 75%, #8B4513 100%) !important;
+  border-color: #FFD700 !important;
+  animation: none !important;
+  
+  box-shadow: 
+    0 0 0 3px #DAA520,
+    0 12px 24px rgba(0, 0, 0, 0.4),
+    0 20px 40px rgba(139, 69, 19, 0.6),
+    0 0 40px rgba(218, 165, 32, 1),
+    inset 0 3px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -3px 0 rgba(0, 0, 0, 0.3) !important;
+}
+
+.btn-hero-primary:active {
+  transform: translateY(-3px) scale(1.03) !important;
+}
+
+/* Make sure the button is always visible */
+.hero-actions .btn-hero-primary {
+  z-index: 10 !important;
+  position: relative !important;
+}
