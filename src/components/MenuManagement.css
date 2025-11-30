@@ -646,6 +646,76 @@
   border-color: #e53e3e;
 }
 
+.restore-btn {
+  background: transparent;
+  border: 1px solid #10b981;
+  color: #10b981;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.restore-btn:hover {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: #059669;
+  color: #059669;
+}
+
+/* Unavailable item styles */
+.menu-item-card.unavailable {
+  opacity: 0.6;
+  background: #f9fafb;
+  border: 1px dashed #d1d5db;
+  position: relative;
+}
+
+.menu-item-card.unavailable .item-details h3,
+.menu-item-card.unavailable .item-description {
+  color: #6b7280;
+}
+
+.unavailable-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: #ef4444;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  z-index: 2;
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: inherit;
+}
+
+.menu-item-card.unavailable .item-image {
+  position: relative;
+}
+
+.menu-item-card.unavailable .pricing-info,
+.menu-item-card.unavailable .item-category {
+  color: #9ca3af;
+}
+
 .empty-state {
   text-align: center;
   padding: 60px 20px;

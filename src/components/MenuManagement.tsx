@@ -283,11 +283,61 @@ const MenuManagement: React.FC = () => {
     setShowAddForm(true);
   };
 
-  const handleDelete = async (item: MenuItemDB) => {
-    if (!confirm(`Are you sure you want to delete "${item.name}"?`)) return;
-
+  // Check if menu item has order history
+  const checkOrderHistory = async (itemId: string): Promise<{ hasOrders: boolean; orderCount: number }> => {
     try {
-      console.log('🔄 Deleting item from Supabase:', item.name);
+      const { data, error } = await supabase
+        .from('order_items')
+        .select('id')
+        .eq('menu_item_id', itemId);
+
+      if (error) {
+        console.warn('⚠️ Could not check order history:', error);
+        return { hasOrders: false, orderCount: 0 };
+      }
+
+      return { 
+        hasOrders: data && data.length > 0, 
+        orderCount: data?.length || 0 
+      };
+    } catch (error) {
+      console.warn('⚠️ Error checking order history:', error);
+      return { hasOrders: false, orderCount: 0 };
+    }
+  };
+
+  const handleDelete = async (item: MenuItemDB) => {
+    try {
+      // First check if this item has order history
+      console.log('🔍 Checking order history for:', item.name);
+      const { hasOrders, orderCount } = await checkOrderHistory(item.id);
+
+      if (hasOrders) {
+        // Item has order history - offer soft delete option
+        const userChoice = window.confirm(
+          `⚠️ "${item.name}" cannot be deleted because it appears in ${orderCount} order(s).\n\n` +
+          `Choose an option:\n` +
+          `• OK: Mark as unavailable (soft delete) - keeps order history\n` +
+          `• Cancel: Keep item active\n\n` +
+          `Note: Items with order history cannot be permanently deleted to maintain order integrity.`
+        );
+
+        if (userChoice) {
+          // Perform soft delete
+          await handleSoftDelete(item);
+        }
+        return;
+      }
+
+      // No order history - safe to hard delete
+      const confirmDelete = window.confirm(
+        `Are you sure you want to permanently delete "${item.name}"?\n\n` +
+        `This item has no order history and will be completely removed.`
+      );
+
+      if (!confirmDelete) return;
+
+      console.log('🔄 Hard deleting item from Supabase:', item.name);
       const { error: deleteError } = await supabase
         .from('menu_items')
         .delete()
@@ -295,17 +345,81 @@ const MenuManagement: React.FC = () => {
 
       if (deleteError) throw deleteError;
 
-      console.log('✅ Item deleted from database:', item.name);
+      console.log('✅ Item permanently deleted from database:', item.name);
       // Real-time subscription will handle updating the UI
       
     } catch (error: any) {
       console.error('❌ Database deletion failed:', error);
-      alert(`Error deleting item: ${error.message}`);
       
-      // Fallback: delete from local state
-      const updatedItems = menuItems.filter(menuItem => menuItem.id !== item.id);
-      setMenuItems(updatedItems);
-      console.log('✅ Item deleted locally as fallback:', item.name);
+      // Handle specific foreign key constraint error
+      if (error.code === '23503' || error.message?.includes('foreign key')) {
+        alert(
+          `Cannot delete "${item.name}" - it's referenced in existing orders.\n\n` +
+          `The item will be marked as unavailable instead to preserve order history.`
+        );
+        await handleSoftDelete(item);
+      } else {
+        alert(`Error deleting item: ${error.message}`);
+        
+        // Fallback: delete from local state
+        const updatedItems = menuItems.filter(menuItem => menuItem.id !== item.id);
+        setMenuItems(updatedItems);
+        console.log('✅ Item deleted locally as fallback:', item.name);
+      }
+    }
+  };
+
+  const handleSoftDelete = async (item: MenuItemDB) => {
+    try {
+      console.log('🔄 Soft deleting item (marking unavailable):', item.name);
+      const { error } = await supabase
+        .from('menu_items')
+        .update({ 
+          is_available: false,
+          updated_at: new Date().toISOString()
+        })
+        .eq('id', item.id);
+
+      if (error) throw error;
+
+      console.log('✅ Item marked as unavailable:', item.name);
+      alert(`"${item.name}" has been marked as unavailable and hidden from the menu.`);
+      
+      // Refresh the menu items to reflect the change
+      setTimeout(() => {
+        fetchMenuItems();
+      }, 500);
+      
+    } catch (error: any) {
+      console.error('❌ Soft delete failed:', error);
+      alert(`Error marking item as unavailable: ${error.message}`);
+    }
+  };
+
+  const handleRestore = async (item: MenuItemDB) => {
+    try {
+      console.log('🔄 Restoring item (marking available):', item.name);
+      const { error } = await supabase
+        .from('menu_items')
+        .update({ 
+          is_available: true,
+          updated_at: new Date().toISOString()
+        })
+        .eq('id', item.id);
+
+      if (error) throw error;
+
+      console.log('✅ Item restored and marked as available:', item.name);
+      alert(`"${item.name}" has been restored and is now available on the menu.`);
+      
+      // Refresh the menu items to reflect the change
+      setTimeout(() => {
+        fetchMenuItems();
+      }, 500);
+      
+    } catch (error: any) {
+      console.error('❌ Restore failed:', error);
+      alert(`Error restoring item: ${error.message}`);
     }
   };
 
@@ -634,8 +748,14 @@ const MenuManagement: React.FC = () => {
 
       <div className="menu-items-grid">
         {menuItems.map((item) => (
-          <div key={item.id} className="menu-item-card">
-            {item.is_featured && (
+          <div key={item.id} className={`menu-item-card ${!item.is_available ? 'unavailable' : ''}`}>
+            {!item.is_available && (
+              <div className="unavailable-badge">
+                <X size={12} />
+                Unavailable
+              </div>
+            )}
+            {item.is_featured && item.is_available && (
               <div className="popular-badge">
                 <Star size={12} />
                 Popular
@@ -648,6 +768,7 @@ const MenuManagement: React.FC = () => {
               ) : (
                 <span className="item-icon">☕</span>
               )}
+              {!item.is_available && <div className="image-overlay"></div>}
             </div>
 
             <div className="item-details">
@@ -679,13 +800,23 @@ const MenuManagement: React.FC = () => {
               >
                 <Edit size={16} />
               </button>
-              <button 
-                className="delete-btn"
-                onClick={() => handleDelete(item)}
-                title="Delete item"
-              >
-                <Trash2 size={16} />
-              </button>
+              {item.is_available ? (
+                <button 
+                  className="delete-btn"
+                  onClick={() => handleDelete(item)}
+                  title="Delete item"
+                >
+                  <Trash2 size={16} />
+                </button>
+              ) : (
+                <button 
+                  className="restore-btn"
+                  onClick={() => handleRestore(item)}
+                  title="Restore item"
+                >
+                  <Plus size={16} />
+                </button>
+              )}
             </div>
           </div>
         ))}
