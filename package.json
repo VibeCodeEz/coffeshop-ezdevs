@@ -1,6 +1,7 @@
 {
   "name": "bos-coffee-clone",
   "version": "1.0.0",
+  "type": "module",
   "description": "A React TypeScript website for EzDevs Coffee",
   "main": "index.js",
   "scripts": {
